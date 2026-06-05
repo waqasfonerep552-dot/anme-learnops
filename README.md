@@ -164,6 +164,22 @@ powershell -ExecutionPolicy Bypass -File .\scripts\start-queue-worker.ps1
 powershell -ExecutionPolicy Bypass -File .\scripts\uninstall-queue-worker-task.ps1
 ```
 
+### Permanent Scheduler on Windows
+
+The scheduler runs Moodle course/progress sync commands. It also tries Windows Task Scheduler first, then falls back to current-user Startup:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\install-scheduler-worker-task.ps1
+```
+
+Useful controls:
+
+```powershell
+Get-ScheduledTask -TaskName "ANME LearnOps Scheduler"
+powershell -ExecutionPolicy Bypass -File .\scripts\start-scheduler-worker.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\uninstall-scheduler-worker-task.ps1
+```
+
 ### Moodle Public URL via Ngrok
 
 For local development, one ngrok domain is used for both apps:
